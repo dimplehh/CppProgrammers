@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int hamsu(int &ref)
+{
+    return ref + 1;
+}
+
+int hamsu2(int &ref)
+{
+    return ref * -1;
+}
+
+int main(void)
+{
+    int num1 = 10;
+    int num2 = 10;
+    cout << hamsu(num1) << endl;
+    cout << hamsu2(num2) << endl;
+    return 0;
+}
