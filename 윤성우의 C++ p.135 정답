@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+class Calculator
+{
+private:
+    int hap;
+    int min;
+    int gop;
+    int na;
+public:
+    void Init();
+    double Add(double n1, double n2);
+    double Min(double n1, double n2);
+    double Mul(double n1, double n2);
+    double Div(double n1, double n2);
+    void ShowOpCount();
+};
+void Calculator::Init()
+{
+    hap = 0;
+    min = 0;
+    gop = 0;
+    na = 0;
+}
+double Calculator::Add(double n1, double n2)
+{
+    hap += 1;
+    return n1 + n2;
+}
+double Calculator::Min(double n1, double n2)
+{
+    min += 1;
+    return n1 - n2;
+}
+double Calculator::Mul(double n1, double n2)
+{
+    gop += 1;
+    return n1 * n2;
+}
+double Calculator::Div(double n1, double n2)
+{
+    na += 1;
+    return n1 / n2;
+}
+void Calculator::ShowOpCount()
+{
+    cout << "덧셈: "<< hap << ' ';
+    cout << "덧셈: "<< gop << ' ';
+    cout << "덧셈: "<< min << ' ';
+    cout << "덧셈: "<< na << ' ';
+}
+int main(void)
+{
+    Calculator cal;
+    cal.Init();
+    cout << "3.2 + 2.4 = " << cal.Add(3.2, 2.4) <<endl;
+    cout << "3.5 / 1.7 = " << cal.Div(3.5, 1.7) <<endl;
+    cout << "2.2 - 1.5 = " << cal.Min(2.2, 1.5) <<endl;
+    cout << "4.9 / 1.2 = " << cal.Div(4.9, 1.2) <<endl;
+    cal.ShowOpCount();
+    return 0;
+}
