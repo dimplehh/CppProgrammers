@@ -1,0 +1,81 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+namespace COMP_POS
+{
+    enum {CLERK, SENIOR, ASSIST, MANAGER};
+    void ShowPositionInfo(int pos)
+    {
+        switch(pos)
+        {
+            case CLERK:
+                cout << "사원" << endl;
+                break;
+            case SENIOR:
+                cout << "주임" << endl;
+            case ASSIST:
+                cout << "대리" << endl;
+                break;
+            case MANAGER:
+                cout << "과장" << endl;
+        }
+    }
+}
+
+class NameCard
+{
+private:
+    char *name;
+    char *comname;
+    char *number;
+    int jikgeup;
+public:
+    NameCard(char *myname,char *cname,char *num,int jik):jikgeup(jik)
+    {
+        int len = strlen(myname) + 1;
+        name = new char[len];
+        strcpy(name, myname);
+
+        int len2 = strlen(cname) + 1;
+        comname = new char[len2];
+        strcpy(comname, cname);
+
+        int len3 = strlen(num) + 1;
+        number = new char[len3];
+        strcpy(number, num);
+    }
+    NameCard(const NameCard& copy):jikgeup(copy.jikgeup)
+    {
+        name = new char[strlen(copy.name) + 1];
+        strcpy(name, copy.name);
+        comname = new char[strlen(copy.comname) + 1];
+        strcpy(comname, copy.comname);
+        number = new char[strlen(copy.number) + 1];
+        strcpy(number, copy.number);
+    }
+    void ShowNameCardInfo() const
+    {
+        cout << "이름: " << name << endl;
+        cout << "회사: " << comname << endl;
+        cout << "전화번호: " << number << endl;
+        cout << "직급: ";COMP_POS::ShowPositionInfo(jikgeup);
+        cout << endl;
+    }
+    ~NameCard()
+    {
+        delete []name;
+        delete []comname;
+        delete []number;
+    }
+};
+int main(void)
+{
+    NameCard manClerk("Lee", "ABCEng", "010-1111-2222", COMP_POS::CLERK);
+    NameCard copy1 = manClerk;
+    NameCard manSENIOR("Hong", "OrangeEng", "010-3333-4444", COMP_POS::SENIOR);
+    NameCard copy2 = manSENIOR;
+    copy1.ShowNameCardInfo();
+    copy2.ShowNameCardInfo();
+    return 0;
+}
